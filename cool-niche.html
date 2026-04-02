@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Cool Niche — Curated Home Goods</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'DM Sans',sans-serif;background:#f7f3ee;color:#2a2118;min-height:100vh;}
+
+nav{position:sticky;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.4rem 3.5rem;background:rgba(247,243,238,0.96);backdrop-filter:blur(10px);border-bottom:0.5px solid rgba(42,33,24,0.08);}
+.logo{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:400;letter-spacing:0.04em;color:#2a2118;}
+.logo em{font-style:italic;color:#8c6a3f;}
+.nav-links{display:flex;gap:2.5rem;}
+.nav-links a{font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;color:rgba(42,33,24,0.45);text-decoration:none;transition:color 0.3s;}
+.nav-links a:hover{color:#2a2118;}
+.nav-cta{font-size:0.7rem;letter-spacing:0.16em;text-transform:uppercase;padding:0.6rem 1.4rem;border:0.5px solid rgba(42,33,24,0.3);color:#2a2118;background:transparent;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.3s;}
+.nav-cta:hover{background:#2a2118;color:#f7f3ee;}
+
+.hero{display:grid;grid-template-columns:1fr 1fr;min-height:92vh;overflow:hidden;}
+.hero-left{display:flex;flex-direction:column;justify-content:center;padding:7rem 3.5rem 5rem;}
+.hero-eyebrow{font-size:0.68rem;letter-spacing:0.35em;text-transform:uppercase;color:#8c6a3f;margin-bottom:2rem;animation:fadeUp 0.8s ease both;}
+.hero-title{font-family:'Playfair Display',serif;font-size:clamp(2.8rem,4.5vw,4.5rem);font-weight:300;line-height:1.1;color:#2a2118;margin-bottom:1.8rem;animation:fadeUp 0.8s ease 0.15s both;}
+.hero-title em{font-style:italic;color:#8c6a3f;}
+.hero-sub{font-size:0.9rem;font-weight:300;line-height:1.9;color:rgba(42,33,24,0.55);max-width:380px;margin-bottom:3rem;animation:fadeUp 0.8s ease 0.3s both;}
+.hero-actions{display:flex;gap:1.5rem;align-items:center;animation:fadeUp 0.8s ease 0.45s both;}
+.btn-primary{font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;padding:1rem 2.2rem;background:#2a2118;color:#f7f3ee;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;transition:opacity 0.3s;}
+.btn-primary:hover{opacity:0.8;}
+.btn-ghost{font-size:0.7rem;letter-spacing:0.18em;text-transform:uppercase;color:rgba(42,33,24,0.45);background:none;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;transition:color 0.3s;text-decoration:none;display:flex;align-items:center;gap:0.4rem;}
+.btn-ghost:hover{color:#2a2118;}
+.btn-ghost::after{content:'→';}
+
+.hero-right{display:grid;grid-template-rows:2fr 1fr;gap:3px;background:#e8e0d5;overflow:hidden;}
+.hero-img-main{overflow:hidden;position:relative;}
+.hero-img-main img{width:100%;height:100%;object-fit:cover;display:block;}
+.hero-img-row{display:grid;grid-template-columns:1fr 1fr;gap:3px;}
+.hero-img-row img{width:100%;height:100%;object-fit:cover;display:block;}
+.img-tag{position:absolute;bottom:1.2rem;left:1.2rem;background:rgba(247,243,238,0.92);padding:0.5rem 0.9rem;font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:#2a2118;}
+
+.divider{height:0.5px;background:rgba(42,33,24,0.08);margin:0 3.5rem;}
+
+.stats{display:grid;grid-template-columns:repeat(4,1fr);padding:3rem 3.5rem;}
+.stat{padding:1.5rem;border-right:0.5px solid rgba(42,33,24,0.08);text-align:center;}
+.stat:last-child{border-right:none;}
+.stat-num{font-family:'Playfair Display',serif;font-size:2.4rem;font-weight:300;color:#2a2118;line-height:1;margin-bottom:0.4rem;}
+.stat-label{font-size:0.68rem;letter-spacing:0.18em;text-transform:uppercase;color:rgba(42,33,24,0.4);}
+
+.section{padding:6rem 3.5rem;}
+.section-label{font-size:0.68rem;letter-spacing:0.35em;text-transform:uppercase;color:#8c6a3f;margin-bottom:1rem;}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3vw,2.8rem);font-weight:300;color:#2a2118;line-height:1.2;margin-bottom:1.2rem;max-width:580px;}
+.section-title em{font-style:italic;}
+.section-body{font-size:0.88rem;font-weight:300;line-height:1.9;color:rgba(42,33,24,0.5);max-width:440px;}
+
+.products-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:4rem;}
+.product-card{cursor:pointer;transition:transform 0.3s;}
+.product-card:hover{transform:translateY(-4px);}
+.product-img{aspect-ratio:3/4;margin-bottom:1rem;overflow:hidden;background:#e8e0d5;}
+.product-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s;}
+.product-card:hover .product-img img{transform:scale(1.04);}
+.product-tag{font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:#8c6a3f;margin-bottom:0.3rem;}
+.product-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:300;color:#2a2118;margin-bottom:0.25rem;}
+.product-price{font-size:0.82rem;color:rgba(42,33,24,0.45);}
+
+.philosophy{padding:6rem 3.5rem;background:#2a2118;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;}
+.phil-label{font-size:0.68rem;letter-spacing:0.35em;text-transform:uppercase;color:#c9a96e;margin-bottom:1.5rem;}
+.phil-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,3.5vw,3rem);font-weight:300;color:#f7f3ee;line-height:1.2;}
+.phil-title em{font-style:italic;color:#c9a96e;}
+.phil-body{font-size:0.88rem;font-weight:300;line-height:1.9;color:rgba(247,243,238,0.5);margin-bottom:2rem;}
+.pillars{display:flex;flex-direction:column;gap:1.2rem;}
+.pillar{display:flex;align-items:flex-start;gap:1rem;padding-bottom:1.2rem;border-bottom:0.5px solid rgba(247,243,238,0.08);}
+.pillar:last-child{border-bottom:none;}
+.pillar-num{font-family:'Playfair Display',serif;font-style:italic;font-size:1rem;color:#c9a96e;min-width:1.5rem;}
+.pillar-name{font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(247,243,238,0.75);margin-bottom:0.25rem;}
+.pillar-text{font-size:0.82rem;font-weight:300;line-height:1.7;color:rgba(247,243,238,0.5);}
+
+.testimonial-section{padding:7rem 3.5rem;text-align:center;border-top:0.5px solid rgba(42,33,24,0.08);}
+blockquote{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(1.3rem,2.2vw,2rem);font-weight:300;color:rgba(42,33,24,0.7);line-height:1.6;max-width:700px;margin:0 auto;}
+blockquote cite{display:block;margin-top:1.8rem;font-size:0.7rem;font-style:normal;font-family:'DM Sans',sans-serif;letter-spacing:0.2em;text-transform:uppercase;color:rgba(42,33,24,0.3);}
+
+.cta-section{padding:7rem 3.5rem;background:#ede7de;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;}
+.cta-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,3.5vw,3rem);font-weight:300;color:#2a2118;line-height:1.2;}
+.cta-title em{font-style:italic;}
+.cta-sub{font-size:0.85rem;font-weight:300;color:rgba(42,33,24,0.5);margin-top:1rem;line-height:1.8;}
+.cta-form{display:flex;flex-direction:column;gap:1rem;}
+.cta-form input{background:transparent;border:none;border-bottom:0.5px solid rgba(42,33,24,0.2);padding:0.9rem 0;font-family:'DM Sans',sans-serif;font-size:0.85rem;font-weight:300;color:#2a2118;outline:none;transition:border-color 0.3s;}
+.cta-form input::placeholder{color:rgba(42,33,24,0.3);}
+.cta-form input:focus{border-color:rgba(42,33,24,0.5);}
+
+footer{padding:2rem 3.5rem;border-top:0.5px solid rgba(42,33,24,0.08);display:flex;justify-content:space-between;align-items:center;background:#f7f3ee;}
+.footer-logo{font-family:'Playfair Display',serif;font-size:1rem;font-weight:400;letter-spacing:0.04em;color:rgba(42,33,24,0.35);}
+.footer-logo em{font-style:italic;}
+.footer-links{display:flex;gap:2rem;}
+.footer-links a{font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(42,33,24,0.3);text-decoration:none;}
+.footer-copy{font-size:0.65rem;letter-spacing:0.1em;color:rgba(42,33,24,0.2);}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Cool <em>Niche</em></div>
+  <div class="nav-links">
+    <a href="#">Collection</a>
+    <a href="#">Rooms</a>
+    <a href="#">Story</a>
+    <a href="#">Journal</a>
+  </div>
+  <button class="nav-cta">Shop now</button>
+</nav>
+
+<section class="hero">
+  <div class="hero-left">
+    <p class="hero-eyebrow">Curated home goods · Est. 2024</p>
+    <h1 class="hero-title">Objects that<br>make a home<br><em>feel alive</em></h1>
+    <p class="hero-sub">Every piece in our collection is chosen for its beauty, craft, and the quiet story it tells. No noise — just things that matter.</p>
+    <div class="hero-actions">
+      <button class="btn-primary">Explore collection</button>
+      <a href="#" class="btn-ghost">Our curation process</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-img-main">
+      <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&q=80" alt="Warm minimalist living room"/>
+      <div class="img-tag">Living Room Edit</div>
+    </div>
+    <div class="hero-img-row">
+      <img src="https://images.unsplash.com/photo-1612198188060-c7c2a3b66eae?w=400&q=80" alt="Artisan ceramics"/>
+      <img src="https://images.unsplash.com/photo-1600210492493-0946911123ea?w=400&q=80" alt="Home styling"/>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<div class="stats">
+  <div class="stat"><div class="stat-num">320+</div><div class="stat-label">Curated pieces</div></div>
+  <div class="stat"><div class="stat-num">40+</div><div class="stat-label">Artisan makers</div></div>
+  <div class="stat"><div class="stat-num">12</div><div class="stat-label">Countries sourced</div></div>
+  <div class="stat"><div class="stat-num">4.9</div><div class="stat-label">Average rating</div></div>
+</div>
+
+<div class="divider"></div>
+
+<section class="section">
+  <p class="section-label">New arrivals</p>
+  <h2 class="section-title">The <em>Autumn</em> collection is here</h2>
+  <p class="section-body">Warm textures, considered forms, and pieces that carry the feeling of a season well-lived.</p>
+
+  <div class="products-grid">
+    <div class="product-card">
+      <div class="product-img">
+        <img src="https://images.unsplash.com/photo-1578500351865-d6c3706f46bc?w=500&q=80" alt="Ceramic vase"/>
+      </div>
+      <div class="product-tag">Ceramics</div>
+      <div class="product-name">Wabi Vase, Terracotta</div>
+      <div class="product-price">₹3,200</div>
+    </div>
+    <div class="product-card">
+      <div class="product-img">
+        <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=500&q=80" alt="Linen throw"/>
+      </div>
+      <div class="product-tag">Textiles</div>
+      <div class="product-name">Linen Throw, Oat</div>
+      <div class="product-price">₹4,800</div>
+    </div>
+    <div class="product-card">
+      <div class="product-img">
+        <img src="https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=500&q=80" alt="Table lamp"/>
+      </div>
+      <div class="product-tag">Lighting</div>
+      <div class="product-name">Arc Table Lamp, Brass</div>
+      <div class="product-price">₹8,500</div>
+    </div>
+  </div>
+</section>
+
+<section class="philosophy">
+  <div>
+    <p class="phil-label">Our philosophy</p>
+    <h2 class="phil-title">Less, but<br><em>far better</em></h2>
+  </div>
+  <div>
+    <p class="phil-body">We believe a home should be filled with intention — not volume. Every piece we carry is chosen because it earns its place.</p>
+    <div class="pillars">
+      <div class="pillar">
+        <span class="pillar-num">01.</span>
+        <div>
+          <div class="pillar-name">Considered craft</div>
+          <div class="pillar-text">We work only with makers who treat their process as a practice — slow, skilled, and purposeful.</div>
+        </div>
+      </div>
+      <div class="pillar">
+        <span class="pillar-num">02.</span>
+        <div>
+          <div class="pillar-name">Timeless over trendy</div>
+          <div class="pillar-text">Our collection is edited for longevity. These are pieces you will still love in twenty years.</div>
+        </div>
+      </div>
+      <div class="pillar">
+        <span class="pillar-num">03.</span>
+        <div>
+          <div class="pillar-name">Responsibly sourced</div>
+          <div class="pillar-text">Ethical supply chains, natural materials, and makers paid fairly for their expertise.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="testimonial-section">
+  <blockquote>
+    "Cool Niche helped me stop buying things and start choosing them. My home finally feels like mine."
+    <cite>— Priya M., Mumbai</cite>
+  </blockquote>
+</section>
+
+<section class="cta-section">
+  <div>
+    <p class="section-label">Stay in the loop</p>
+    <h2 class="cta-title">New pieces,<br><em>no noise</em></h2>
+    <p class="cta-sub">Join our edit list — curated drops, maker stories, and early access to new arrivals. No spam, ever.</p>
+  </div>
+  <div class="cta-form">
+    <input type="text" placeholder="Your name"/>
+    <input type="email" placeholder="Your email address"/>
+    <button class="btn-primary" style="align-self:flex-start;margin-top:0.5rem;">Join the edit</button>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">Cool <em>Niche</em></div>
+  <div class="footer-links">
+    <a href="#">Collection</a>
+    <a href="#">About</a>
+    <a href="#">Care guides</a>
+    <a href="#">Contact</a>
+  </div>
+  <div class="footer-copy">© 2026 Cool Niche. All rights reserved.</div>
+</footer>
+
+</body>
+</html>
